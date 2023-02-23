@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:ital,wght@0,400;1,200&display=swap" rel="stylesheet">
+    <!-- Style Sheets -->
+    <link href="index.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/572efc1e1c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <div class="container header">
+            <img class="logo" src="./images/sliced-1.png">
+            <div class="heading">
+                <h1 class="title">Welcome to <span class="accent">SLICED</span></h1>
+                <h2 class="subtitle">The true home of the pizza slice</h2>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section>
+                <h2 class="section-header">Menu</h2>
+                <div class="menu" id="menu">
+                    <!-- Menu is rendered here -->
+                </div>
+            </section>
+            
+            <section id="basket-modal" class="basket-modal">
+                <div class="modal-inner">
+                    <h2 class="section-header">Your order</h2>
+                    <div id="basket" class="basket">  
+                    <!-- Basket is rendered here -->
+                    </div>
+                    <hr>
+                    <div id="basket-total-amount" class="item-wrapper basket">
+                            <h2 class="item-name">Total amount</h2>
+                            <h2 id="total-amount" class="item-name"></h2>
+                    </div>                   
+                    <button id="order-btn" class="purchase-btn">PLACE ORDER</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container header">
+            <img class="logo" src="./images/sliced-1.png">
+            <div class="heading">
+                <h1 class="title">Welcome to <span class="accent">SLICED</span></h1>
+                <h2 class="subtitle">The true home of the pizza slice</h2>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Toaster div for message -->
+    <div id="toast" class="toast"></div>
+    
+    <!-- Payment modal - hidden by default -->
+	<div id="payment-modal" class="payment-modal">
+		<button id="modal-close" class="modal-close">X</button>
+        <h2 id="gallery-header" class="modal-header">Enter card details</h2>
+
+		<form id="modal-form" class="modal-form">			
+            <label for="name-input" class="visually-hidden">Name</label>
+			<input type="text" id="name-input" class="form-input" 
+				   name="name-input" placeholder="Name" required>
+                   
+            <label for="card-input" class="visually-hidden">Enter card number</label>
+			<input type="number" id="card-input" class="form-input" 
+				   name="card-input" placeholder="Enter card number" required>
+                   
+            <label for="cvv-input" class="visually-hidden">Enter CVV</label>
+			<input type="number" id="cvv-input" class="form-input" 
+				   name="cvv-input" placeholder="Enter CVV" required>
+            
+            <button type="submit" id="submit-btn" class="purchase-btn">PAY</button>
+		</form>
+	</div>
+    
+   
+    <script src="index.js" type="module"></script>
+</body>
+</html>
