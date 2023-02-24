@@ -85,7 +85,7 @@ function getMenuHtml() {
                 <h3 class="item-ingredients">${ingredients}</h3>
                 <h4 class="item-price">${item.price}€</h4>
             </div>
-            <button class="menu-btn"><i class="fa-solid fa-plus" data-add="${item.uuid}"></i></button>
+            <button class="menu-btn" data-add="${item.uuid}"><i class="fa-solid fa-plus" data-add="${item.uuid}"></i></button>
         </article>
     `
     })
@@ -101,7 +101,7 @@ function getBasketHtml() {
                 <div class="basket-info" id="${item.uuid}">
                     <h2 id="ordered-item" class="item-name">${item.name}</h2>
                     <h2 id="ordered-quantity" class="item-name">x${item.quantity}</h2>
-                    <button class="menu-btn remove-btn"><i class="fa-solid fa-minus" data-remove="${item.uuid}"></i></button>
+                    <button class="menu-btn remove-btn" data-remove="${item.uuid}"><i class="fa-solid fa-minus" data-remove="${item.uuid}"></i></button>
                 </div> 
                 <h2 class="item-name">${item.price * item.quantity}€</h2>
             </article>
@@ -111,7 +111,7 @@ function getBasketHtml() {
             <article class="item-wrapper">
                 <div class="basket-info" id="${item.uuid}">
                     <h2 id="ordered-item" class="item-name">${item.name}</h2>
-                    <button class="menu-btn remove-btn"><i class="fa-solid fa-minus" data-remove="${item.uuid}"></i></button>
+                    <button class="menu-btn remove-btn" data-remove="${item.uuid}"><i class="fa-solid fa-minus" data-remove="${item.uuid}"></i></button>
                 </div> 
                 <h2 class="item-name">${item.price}€</h2>
             </article>
@@ -127,15 +127,19 @@ function renderMenu() {
 }
 
 function renderBasket() {
-    menuArray.forEach(item => {
-        // check if basket is empty => close the modal
-        if (item.quantity === 0){
-            document.getElementById("basket-modal").style.display = "none"
-        } else {
-            document.getElementById("basket-modal").style.display = "flex"
+    const basketModal = document.getElementById("basket-modal")
+    
+    // check whether every item in menuArray has 0 quantity
+    const isBasketEmpty = menuArray.every(item => item.quantity == 0)
+    
+    if (isBasketEmpty) {
+        basketModal.style.display = "none"
+        
+    } else {
+        basketModal.style.display = "flex"
             document.getElementById("basket").innerHTML = getBasketHtml()
-            document.getElementById("total-amount").textContent = `${totalAmount}€`}
-    })
+            document.getElementById("total-amount").textContent = `${totalAmount}€`
+    }
 }
 
 // RUN ON LOAD
