@@ -41,7 +41,7 @@ function removeFromBasket(id) {
 
 document.getElementById("payment-modal").addEventListener("submit", function(e) {
     e.preventDefault()
-        handlePayment()
+    handlePayment()
 })
 
 function handlePayment() {
@@ -91,7 +91,6 @@ function getMenuHtml() {
         </article>
     `
     })
-    console.log(html)
     return html
 }
 
