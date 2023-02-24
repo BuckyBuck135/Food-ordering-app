@@ -122,6 +122,10 @@ section {
     margin: 0.2em 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 .menu-btn {
     width: 35px;
     height: 35px;
@@ -131,6 +135,17 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.menu-btn:hover,
+.modal-close:hover {
+    background-color: #fca311ff;
+    border: 1px solid #000000;
+}
+
+.menu-btn:hover > *,
+.modal-close:hover {
+    color:#000000
 }
 
 .fa-plus {
@@ -198,6 +213,10 @@ div.basket > div.item-wrapper {
     border-radius: 10px;
 }
 
+.purchase-btn:hover {
+    background-color: black;
+    color: #fca311ff
+}
 /* PAYMENT MODAL */
 
 /* Editing modal */
