@@ -20,12 +20,7 @@ document.addEventListener("click", function(e) {
     else if(e.target.id == "order-btn") {
         document.getElementById("payment-modal").style.display = "flex"
     }
-    
-    // else if(e.target.id == "submit-btn") {
-    //     e.preventDefault()
-    //     handlePayment()
-    // }
-    
+        
     else if(e.target.id == "modal-close") {
         closePaymentModal()
     }
@@ -44,7 +39,7 @@ function removeFromBasket(id) {
     totalAmount -= menuObject.price
 }
 
-document.getElementById("submit-btn").addEventListener("submit", function(e) {
+document.getElementById("payment-modal").addEventListener("submit", function(e) {
     e.preventDefault()
         handlePayment()
 })
@@ -77,6 +72,8 @@ function closePaymentModal() {
 
 // GET HTML STRINGS FUNCTIONS
 
+
+
 function getMenuHtml() {
     let html = ""
     menuArray.forEach(item => {
@@ -94,6 +91,7 @@ function getMenuHtml() {
         </article>
     `
     })
+    console.log(html)
     return html
 }
 
