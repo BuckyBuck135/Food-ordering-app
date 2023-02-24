@@ -21,10 +21,10 @@ document.addEventListener("click", function(e) {
         document.getElementById("payment-modal").style.display = "flex"
     }
     
-    else if(e.target.id == "submit-btn") {
-        e.preventDefault()
-        handlePayment()
-    }
+    // else if(e.target.id == "submit-btn") {
+    //     e.preventDefault()
+    //     handlePayment()
+    // }
     
     else if(e.target.id == "modal-close") {
         closePaymentModal()
@@ -43,6 +43,11 @@ function removeFromBasket(id) {
     menuObject.quantity--
     totalAmount -= menuObject.price
 }
+
+document.getElementById("submit-btn").addEventListener("submit", function(e) {
+    e.preventDefault()
+        handlePayment()
+})
 
 function handlePayment() {
     const toast = document.getElementById("toast")
