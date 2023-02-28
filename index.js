@@ -7,13 +7,11 @@ document.addEventListener("click", function(e) {
     // currently does not activate on clicking the button itself, just the icon
     if(e.target.dataset.add) {
         addToBasket(e.target.dataset.add)
-        getBasketHtml()
         renderBasket()
     }
     
     else if(e.target.dataset.remove) {
         removeFromBasket(e.target.dataset.remove)
-        getBasketHtml()
         renderBasket()
     }
     
@@ -21,20 +19,21 @@ document.addEventListener("click", function(e) {
         document.getElementById("payment-modal").style.display = "flex"
     }
         
-    else if(e.target.id == "modal-close") {
+    // use element.closest() on the root of the modal
+    else if (!e.target.closest('#payment-modal') || e.target.id == "modal-close") {
         closePaymentModal()
     }
 }) 
 
 // CLICK HANDLERS
 function addToBasket(id) {
-    const menuObject = menuArray.filter(item => item.uuid == id)[0]
+    const menuObject = menuArray.find(item => item.uuid == id)
     menuObject.quantity++
     totalAmount += menuObject.price
 }
 
 function removeFromBasket(id) {
-    const menuObject = menuArray.filter(item => item.uuid == id)[0]
+    const menuObject = menuArray.find(item => item.uuid == id)
     menuObject.quantity--
     totalAmount -= menuObject.price
 }
@@ -53,12 +52,14 @@ function handlePayment() {
         toast.textContent = "Thank you for your order!"
         main.classList.add("filter")
         
+        //reset everything to get ready for a new order
         setTimeout(() => {
             main.classList.remove("filter")
             toast.style.display = "none"
             menuArray.forEach(item => item.quantity = 0)
             document.getElementById("basket-modal").style.display = "none"
             inputFields.forEach(element => element.value = "")
+            totalAmount = 0
             }, 2000)
 }
 
@@ -72,15 +73,11 @@ function closePaymentModal() {
 
 // GET HTML STRINGS FUNCTIONS
 
-
-
+//.map() version
 function getMenuHtml() {
-    let html = ""
-    menuArray.forEach(item => {
-    //join the strings of the ingredients array into 1 string
-    const ingredients = item.ingredients.join(", ")
-
-    html += `
+    const html = menuArray.map(item => {
+        const ingredients = item.ingredients.join(", ")
+        return `
         <article class="item-wrapper border-bottom">
             <div class="item-info" id="${item.uuid}">
                 <h2 class="item-name">${item.name}</h2>
@@ -90,9 +87,30 @@ function getMenuHtml() {
             <button class="menu-btn" data-add="${item.uuid}"><i class="fa-solid fa-plus" data-add="${item.uuid}"></i></button>
         </article>
     `
-    })
+    }).join("")
     return html
 }
+
+// .forEach() version //
+// function getMenuHtml() {
+//     let html = ""
+//     menuArray.forEach(item => {
+//     //join the strings of the ingredients array into 1 string
+//     const ingredients = item.ingredients.join(", ")
+
+//     html += `
+//         <article class="item-wrapper border-bottom">
+//             <div class="item-info" id="${item.uuid}">
+//                 <h2 class="item-name">${item.name}</h2>
+//                 <h3 class="item-ingredients">${ingredients}</h3>
+//                 <h4 class="item-price">${item.price}€</h4>
+//             </div>
+//             <button class="menu-btn" data-add="${item.uuid}"><i class="fa-solid fa-plus" data-add="${item.uuid}"></i></button>
+//         </article>
+//     `
+//     })
+//     return html
+// }
 
 function getBasketHtml() {
     let html = ""
