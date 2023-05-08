@@ -4,7 +4,6 @@ let totalAmount = 0
 
 // EVENT LISTENERS
 document.addEventListener("click", function(e) {
-    // currently does not activate on clicking the button itself, just the icon
     if(e.target.dataset.add) {
         addToBasket(e.target.dataset.add)
         renderBasket()
@@ -19,7 +18,6 @@ document.addEventListener("click", function(e) {
         document.getElementById("payment-modal").style.display = "flex"
     }
         
-    // use element.closest() on the root of the modal
     else if ( e.target.id == "modal-close") {
         closePaymentModal()
     }
