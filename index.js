@@ -20,7 +20,7 @@ document.addEventListener("click", function(e) {
     }
         
     // use element.closest() on the root of the modal
-    else if (!e.target.closest('#payment-modal') || e.target.id == "modal-close") {
+    else if ( e.target.id == "modal-close") {
         closePaymentModal()
     }
 }) 
